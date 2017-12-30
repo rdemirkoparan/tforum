@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tech Forum</title>
+
+	<link href="../static/css/main.css" rel="stylesheet" media="screen" th:href="@{/css/main.css}"/>
+    <link href="/webjars/materializecss/0.100.2/css/materialize.min.css" rel="stylesheet"/>
+    <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
+    <script src="/webjars/bootstrap/3.3.7/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Tech Forum by rdemirkoparan</h1>
+        <h2>Please Login or SignUp to continue</h2>
+    </div>
+
+</div>
+<!-- /.container -->
+<script th:inline="javascript" type="text/javascript">
+/* Fill in modal with content loaded with Ajax */
+$(document).ready(function () {
+    $('#signup').on('click', function (e) {
+        $("#myModal").modal();
+        $("#myModalBody").text("");
+        $.ajax({
+            url: "signup",
+            cache: false
+        }).done(function (html) {
+            $("#myModalBody").append(html);
+        });
+    })
+});
+</script>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

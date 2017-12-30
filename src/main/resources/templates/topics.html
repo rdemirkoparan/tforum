@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>Topics</title>
+    
+    <link href="../static/css/main.css" rel="stylesheet" media="screen" th:href="@{/css/main.css}"/>
+    <link href="/webjars/materializecss/0.100.2/css/materialize.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}"/>
+    <script src="/webjars/bootstrap/3.3.7/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+    <div th:replace="fragments/header :: header"/>
+
+	<div class="content">
+        <article class="container" style="padding: 3% 0 2%;">
+            <header class="row">
+                <blockquote class="flow-text left" th:text="${header}">Header</blockquote>
+                <blockquote class="flow-text right" th:text="|Topics: | + ${topics.size()}">Number of topics</blockquote>
+            </header>
+            <section class="row">
+                <div class="col s12">
+                    <table class="striped bordered centered" th:if="${topics.size() != 0}">
+                        <thead>
+                        <tr>
+                            <th>Answers</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Created</th>
+                            <th>Enter</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <th:block th:each="topic : ${topics}">
+                                <tr>
+                                    <td th:text="${answerService.countByTopicId(topic.getId())}">Number of answers</td>
+                                    <td th:text="${topic.getTitle()}">Topic's title</td>
+                                    <td>
+                                        <a th:href="@{'/home/' + ${topic.getUser().getId()}}">
+                                            <div class="chip" th:text="${topic.getUser().getUsername()}">Topic's author</div>
+                                        </a>
+                                    </td>
+                                    <td th:text="${topic.displayParsedCreatedDate()}">Topic's created date</td>
+                                    <td>
+                                        <a th:href="@{'/topic/' + ${topic.getId()}}" class="btn btn-floating pulse">
+                                            <i class="material-icons">arrow_forward</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </article>
+    </div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Tech Forum</title>
+
+<link href="../static/css/main.css" rel="stylesheet" media="screen"
+	th:href="@{/css/main.css}" />
+<link href="/webjars/materializecss/0.100.2/css/materialize.min.css"
+	rel="stylesheet" />
+<link href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}" />
+<script src="/webjars/bootstrap/3.3.7/js/jquery.min.js"
+	th:src="@{/js/jquery.min.js}"></script>
+<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div th:replace="fragments/header :: header-css" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header" />
+	<div class="container">
+	
+		<div th:if="${error != null}" class="alert alert-danger" th:text="${error}">Wrong user or password</div>
+                    
+		<div id="loginbox" style="margin-top: 50px;"
+			class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">Sign In</div>
+				</div>
+
+				<div style="padding-top: 30px" class="panel-body">
+
+					<form id="loginform" class="form-horizontal" role="form"
+						th:action="@{/login}" method="post">
+
+						<div class="form-group">
+							<label for="username" class="col-md-3 control-label">User
+								Name</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="username"
+									placeholder="User Name" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-md-3 control-label">Password</label>
+							<div class="col-md-9">
+								<input type="password" class="form-control" name="password"
+									placeholder="Password" />
+							</div>
+						</div>
+
+						<div style="margin-top: 10px" class="form-group">
+							<!-- Button -->
+
+							<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<input type="submit" class="btn btn-lg btn-primary btn-block"
+										value="Sign In" />
+								</div>
+								<div class="col-xs-6 col-sm-6 col-md-6"></div>
+							</div>
+						</div>
+					</form>
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer :: footer" />
+</body>
+</html>

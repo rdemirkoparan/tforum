@@ -1,0 +1,10 @@
+org.rdemirkoparan.forum
+org.rdemirkoparan.forum.configuration
+org.rdemirkoparan.forum.controller
+org.rdemirkoparan.forum.helper
+org.rdemirkoparan.forum.model
+org.rdemirkoparan.forum.repository
+org.rdemirkoparan.forum.service
+org.rdemirkoparan.forum.service.impl
+org.rdemirkoparan.forum.util
+org.rdemirkoparan.forum.validation
